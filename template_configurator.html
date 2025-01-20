@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+<head>
+<title>template_configurator</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<link type="text/css" rel="stylesheet" href="imagerotator/html/css/empty.css"/>
+<script type="text/javascript" src="imagerotator/html/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="imagerotator/html/js/imagerotator.js"></script>
+
+<style type= "text/css">
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+#wr360wrap {
+    width: 100%;
+    height: 470px;
+}
+
+#menu {
+    margin: 40px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu div {
+    margin: 0 10px 0 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+}
+
+#menu div:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease-out;
+}
+
+#menu div.selected:hover {
+    opacity: 1;
+}
+
+#menu div.green {
+    background: #54a07f;
+}
+
+#menu div.red {
+    background: #ba729e;
+}
+
+#menu div::before {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    opacity: 0;
+}
+
+#menu div.selected::before {
+    border: 1px solid #777;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+@media (min-width: 200px){
+    #menu div {
+        width: 28px;
+        height: 28px;
+        margin: 0 6px 0 6px;     
+    }
+    
+    #menu div::before {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (min-width: 800px){
+    #menu div {
+        width: 38px;
+        height: 38px;
+        margin: 0 10px 0 10px; 
+    }
+    
+    #menu div::before {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+</style>
+
+<!-- 
+    See API sections in the user guide for more details: https://webrotate360.s3.amazonaws.com/sites/webrotate360/downloads/Resources/Readme.pdf
+-->
+
+<script language="javascript" type="text/javascript">
+
+jQuery(document).ready(function(){
+
+    jQuery('#wr360PlayerId').rotator({
+        licenseFileURL: 'license.lic',
+        configFileURL: '360_assets/VansShoe/VansShoe.xml',
+        graphicsPath: 'graphics',
+        alt: '360 degree view ALT description',
+        responsiveBaseWidth: 960,
+        responsiveMinHeight: 0,
+        googleEventTracking: false,
+        apiReadyCallback: function(api){
+            var $menuItems = jQuery('#menu > div');
+            $menuItems.click(function() {
+                $menuItems.removeClass('selected');
+                jQuery(this).addClass('selected');
+                
+                // With a valid license, instead of passing a separate config xml url in "reload" calls below, you can use the second
+                // parameter (root path), pointing to a folder with a set of images for selected color / option, while keeping
+                // the same config xml url for all options (the first parameter).
+                
+                api.reload(jQuery(this).data('xml'), null, function(param) {
+                    console.log('Reload complete!');
+                }, api.images.getCurrentImageIndex());
+            });
+        }
+    });
+    
+});
+
+</script>
+
+</head>
+
+<body>
+
+    <div style="max-width:960px; margin: 0 auto 0 auto;">    
+    
+        <div id="wr360wrap">
+            <div id="wr360PlayerId" class="wr360_player">
+            </div>
+        </div>
+        
+        <div id="menu">
+            <div data-xml="360_assets/VansShoe/VansShoe.xml" class="red selected">
+            </div>
+            <div data-xml="360_assets/VansShoe/VansShoeGreen.xml" class="green">
+            </div>
+        </div>
+        
+    </div>    
+    
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+<head>
+<title>template_slider</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<link type="text/css" rel="stylesheet" href="imagerotator/html/css/empty.css"/>
+<script type="text/javascript" src="imagerotator/html/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="imagerotator/html/js/imagerotator.js"></script>
+
+<style type= "text/css">
+
+html, body
+{
+    padding: 0;
+    margin: 0;
+}
+
+#content
+{
+    width: 100%;
+    height: 450px;
+    /* border: 1px dotted #cecfd2; */
+}
+
+/*-- Slider --*/
+
+.slideContainer 
+{
+	margin: 20px 0 0 0;
+	text-align: center;
+}
+
+.slider 
+{
+	appearance: none;
+	width: 60%; 
+	height: 4px; 
+	background: #d3d3d3;
+	outline: none; 
+	opacity: 0.7; 
+	transition: opacity .2s;
+	border-radius: 2px;
+	display: none;
+}
+
+.slider:hover 
+{
+	opacity: 1; 
+}
+
+.slider::-webkit-slider-thumb 
+{
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #04AA6D;
+	cursor: pointer;
+}
+
+.slider::-moz-range-thumb
+{
+	width: 18px; 
+	height: 18px;
+	background: #04AA6D; 	
+	cursor: pointer; 
+	border-radius: 50%;
+}
+
+</style>
+
+<!-- 
+    See API sections in the user guide for more details: https://webrotate360.s3.amazonaws.com/sites/webrotate360/downloads/Resources/Readme.pdf
+-->
+
+<script language="javascript" type="text/javascript">
+
+jQuery(document).ready(function(){
+
+    jQuery('#wr360PlayerId').rotator({
+        licenseFileURL: 'license.lic',
+        configFileURL: '360_assets/VansShoe/VansShoeSlider.xml',
+        graphicsPath: 'graphics',
+        alt: '360 degree view ALT description',
+        responsiveBaseWidth: 600,
+        responsiveMinHeight: 0,
+        googleEventTracking: false,
+		apiReadyCallback: function(api) {
+			jQuery('#slider')
+				.attr('min', 0)
+				.attr('max', 35) // Set to the number of images in the spin minus 1.
+				.show()
+				.val(api.images.getCurrentImageIndex())
+				.on('input', function() {
+					api.images.showImageByIndex(this.value);
+				});
+			
+			api.images.onFrame(function(props) {
+				jQuery('#slider').val(props.index.image);
+			});
+		}
+    });
+
+});
+
+</script>
+
+</head>
+
+<body>
+
+    <div class="responsive-wrapper-demo-do-not-copy" style="max-width:600px;">    
+
+        <div id="content">
+
+            <div id="wr360PlayerId" class="wr360_player" style="background-color:#FFFFFF;">
+            </div>
+
+        </div>
+		
+		<div class="slideContainer">
+			<input type="range" class="slider" id="slider"/>
+		</div>
+
+    </div>    
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+<head>
+<title>template_custom_progress</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<link type="text/css" rel="stylesheet" href="imagerotator/html/css/retina.css"/>
+<script type="text/javascript" src="imagerotator/html/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="imagerotator/html/js/imagerotator.js"></script>
+
+<style type= "text/css">
+    
+html, body
+{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#content
+{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* -- Custom progress presentation is based on https://codepen.io/JMChristensen/pen/Ablch --*/
+
+.customprogress
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 204px;
+    height: 204px;
+    border-radius: 50%;
+    background: #f7f7f7;
+    margin: -102px 0 0 -102px;
+    opacity: 0.82;
+    z-index: 1000;
+    padding: 4px 0 0 4px;
+    display: none;
+}
+
+.customprogress #svgcircle circle 
+{
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 300ms linear;
+    stroke: #bdc3c7;
+    stroke-width: 20px;
+}
+        
+.customprogress #svgcircle #svgbar 
+{
+    stroke: #e74c3c;
+}
+        
+.customprogress #svgcont 
+{
+    display: block;
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    position: relative;
+}
+        
+.customprogress #svgcont:after 
+{
+    position: absolute;
+    display: block;
+    height: 160px;
+    width: 160px;
+    left: 50%;
+    top: 50%;
+    content: attr(data-pct);
+    margin-top: -80px;
+    margin-left: -80px;
+    border-radius: 100%;
+    line-height: 160px;
+    font-size: 29px;
+    color: #6d7a7b;
+    font-family: "Arial";
+    text-align: center;
+}
+
+</style>
+
+</head>
+
+<body>
+    
+    <p style="text-align:center;position:fixed;left:0;top:0;width:100%;height:30px;z-index:2;">
+        Progress may disappear too fast when testing locally. To test, upload online and / or configure network throttling in Web Developer tools in browser console.
+    </p>
+    
+    <!--
+        See API sections in the user guide for more details: https://webrotate360.s3.amazonaws.com/sites/webrotate360/downloads/Resources/Readme.pdf
+    -->
+
+    <div id="content">
+        
+        <div class="customprogress">
+            <div id="svgcont" data-pct="">
+                <svg id="svgcircle" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                    <circle style="stroke-dashoffset: 565.48px;" id="svgbar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48"></circle>
+                </svg>
+            </div>
+        </div>
+            
+        <div id="wr360PlayerId" class="wr360_player">
+        </div>
+
+        <script language="javascript" type="text/javascript">
+            function incrementProgress(percent) {
+                var bar = jQuery('#svgbar'),
+                    rad = bar.attr('r'),
+                    off = Math.PI * (rad * 2),
+                    pct = ((100 - percent) / 100) * off;
+               
+                var customProgress = jQuery('.customprogress');
+
+                if (percent && percent < 100 && !customProgress.is(':visible')) {
+                    bar.css({strokeDashoffset: pct});
+                    customProgress.fadeIn(100);
+                    return;
+                }
+                else if (percent == 100) {
+                    customProgress.hide();
+                    return;
+                }
+
+                // This line sets the progress number in the center. Remove if not needed.
+                jQuery('#svgcont').attr('data-pct', percent + '%');
+                 
+                bar.css({ strokeDashoffset: pct });
+            }
+
+            var rotator = WR360.ImageRotator.Create('wr360PlayerId');
+
+            rotator.licenseFileURL = 'license.lic';
+            rotator.settings.configFileURL = '360_assets/Cube/Cube.xml';
+            rotator.settings.graphicsPath = 'graphics';
+            rotator.settings.alt = '360 degree view ALT description';
+            rotator.settings.googleEventTracking = false;
+            rotator.settings.progressCallback = function(isFullScreen, percentLoaded, isZoomLoading) {
+                if (typeof isZoomLoading !== 'undefined'){
+                    // Add custom progress indicator on high-res zooming, if configured.
+                    return;
+                }
+                incrementProgress(percentLoaded);
+            };
+
+            rotator.runImageRotator();
+
+        </script>
+
+    </div>
+    
+</body>
+
+</html>
