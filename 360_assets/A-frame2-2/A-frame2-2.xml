@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <settings>
+    <preloader image="images/orbit_0.jpg" />
+    <userInterface showProgressPulse="true" showZoomButtons="true" showToolTips="true" showHotspotsButton="true" showFullScreenButton="false" showTogglePlayButton="true" showArrows="true" toolbarAlign="center" toolbarBackColor="transparent" toolbarHoverColor="#808285" toolbarForeColor="#A7A9AE" toolbarBackAlpha="0" toolbarAlpha="0.89" showProgressNumbers="true" showFullScreenToolbar="false" fullScreenBackColor="#FFFFFF" toolbarPosition="0" customCursorClass="default_cursor" viewerHint="" toolbarAutohide="true" showToolbarOnLoadStart="true" showProgressBar="true" skin="round" />
+    <control dragSpeed="0.13" doubleClickZooms="true" disableMouseControl="false" showHighresOnFullScreen="true" mouseHoverDrag="false" hideHotspotsOnLoad="true" hideHotspotsOnZoom="false" rowSensitivity="15" dragSensitivity="10" inBrowserFullScreen="true" doubleClickFullscreen="false" zoomSteps="2" zoomSpeed="300" singleClickZooms="false" pauseOnPreload="false" resumePreloadOnHover="false" mouseWheelDrag="false" mouseWheelDragZoomOnly="false" allowRotateInputInZoom="false" allowPanX="true" allowPanY="true" dragAcceleration="1" centerZoom="false" maxZoom="100" />
+    <rotation firstImage="0" rotate="once" rotatePeriod="7" bounce="true" rotateDirection="-1" forceDirection="false" inertiaRelToDragSpeed="true" inertiaTimeToStop="700" inertiaMaxInterval="120" useInertia="true" flipHorizontalInput="false" flipVerticalInput="false" bounceRows="true" rowsOnSingleIndex="false" flipAxis="false" spinOnPageScroll="true" pageScrollFollow="false" pageScrollDelay="300" pageScrollPeriod="3" autoPlayOnDragRelease="false" />
+  </settings>
+  <hotspots />
+  <images rows="1" highresWidth="1920" highresHeight="1080">
+    <image src="images/orbit_0.jpg">
+      <highres src="images/highres/orbit_0.jpg" />
+    </image>
+    <image src="images/orbit_1.jpg">
+      <highres src="images/highres/orbit_1.jpg" />
+    </image>
+    <image src="images/orbit_2.jpg">
+      <highres src="images/highres/orbit_2.jpg" />
+    </image>
+    <image src="images/orbit_3.jpg">
+      <highres src="images/highres/orbit_3.jpg" />
+    </image>
+    <image src="images/orbit_4.jpg">
+      <highres src="images/highres/orbit_4.jpg" />
+    </image>
+    <image src="images/orbit_5.jpg">
+      <highres src="images/highres/orbit_5.jpg" />
+    </image>
+    <image src="images/orbit_6.jpg">
+      <highres src="images/highres/orbit_6.jpg" />
+    </image>
+    <image src="images/orbit_7.jpg">
+      <highres src="images/highres/orbit_7.jpg" />
+    </image>
+    <image src="images/orbit_8.jpg">
+      <highres src="images/highres/orbit_8.jpg" />
+    </image>
+    <image src="images/orbit_9.jpg">
+      <highres src="images/highres/orbit_9.jpg" />
+    </image>
+    <image src="images/orbit_10.jpg">
+      <highres src="images/highres/orbit_10.jpg" />
+    </image>
+    <image src="images/orbit_11.jpg">
+      <highres src="images/highres/orbit_11.jpg" />
+    </image>
+    <image src="images/orbit_12.jpg">
+      <highres src="images/highres/orbit_12.jpg" />
+    </image>
+    <image src="images/orbit_13.jpg">
+      <highres src="images/highres/orbit_13.jpg" />
+    </image>
+    <image src="images/orbit_14.jpg">
+      <highres src="images/highres/orbit_14.jpg" />
+    </image>
+    <image src="images/orbit_15.jpg">
+      <highres src="images/highres/orbit_15.jpg" />
+    </image>
+    <image src="images/orbit_16.jpg">
+      <highres src="images/highres/orbit_16.jpg" />
+    </image>
+    <image src="images/orbit_17.jpg">
+      <highres src="images/highres/orbit_17.jpg" />
+    </image>
+    <image src="images/orbit_18.jpg">
+      <highres src="images/highres/orbit_18.jpg" />
+    </image>
+    <image src="images/orbit_19.jpg">
+      <highres src="images/highres/orbit_19.jpg" />
+    </image>
+    <image src="images/orbit_20.jpg">
+      <highres src="images/highres/orbit_20.jpg" />
+    </image>
+    <image src="images/orbit_21.jpg">
+      <highres src="images/highres/orbit_21.jpg" />
+    </image>
+    <image src="images/orbit_22.jpg">
+      <highres src="images/highres/orbit_22.jpg" />
+    </image>
+    <image src="images/orbit_23.jpg">
+      <highres src="images/highres/orbit_23.jpg" />
+    </image>
+    <image src="images/orbit_24.jpg">
+      <highres src="images/highres/orbit_24.jpg" />
+    </image>
+    <image src="images/orbit_25.jpg">
+      <highres src="images/highres/orbit_25.jpg" />
+    </image>
+    <image src="images/orbit_26.jpg">
+      <highres src="images/highres/orbit_26.jpg" />
+    </image>
+    <image src="images/orbit_27.jpg">
+      <highres src="images/highres/orbit_27.jpg" />
+    </image>
+    <image src="images/orbit_28.jpg">
+      <highres src="images/highres/orbit_28.jpg" />
+    </image>
+  </images>
+</config>
